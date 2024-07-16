@@ -14,8 +14,7 @@ export class BodyInitialMessage extends BodyMessage<PayloadInitialMessage> {
   constructor(payload: IPayloadBody<PayloadInitialMessage>) {
     super();
     this.channel = 'PICKING';
-    this.event =
-      EventTypes.WSP_PICKING_SUBSTITUTION_PREFERENCES_V1;
+    this.event = EventTypes.WSP_PICKING_SUBSTITUTION_PREFERENCES_V1;
     this.shippingGroupId = new ShippingGroupId(payload.shippingGroupId);
     this.sendingDate = new SendingDate();
     this.customer = new CustomerWithName(

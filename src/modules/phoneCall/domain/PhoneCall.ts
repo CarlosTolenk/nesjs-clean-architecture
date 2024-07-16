@@ -1,7 +1,7 @@
 import { Cellphone } from '../../shared/domain/valueObject/Cellphone';
 import { ShippingGroupId } from '../../shared/domain/valueObject/ShippingGroupId';
-import { BaseValueObject } from '../../shared/domain/valueObject/BaseValueObject';
 import { CustomerId } from '../../shared/domain/valueObject/CustomerId';
+import { AggregateRoot } from '../../shared/domain/AggregateRoot';
 
 interface IPrimitives {
   id: string;
@@ -27,7 +27,7 @@ interface Params {
   customerId: string;
 }
 
-export class PhoneCall implements BaseValueObject<IPrimitives> {
+export class PhoneCall extends AggregateRoot<IPrimitives> {
   private readonly id: string;
   private readonly shippingGroupId: ShippingGroupId;
   private readonly customerId: CustomerId;
@@ -49,6 +49,7 @@ export class PhoneCall implements BaseValueObject<IPrimitives> {
     notificationId: string;
     id: string;
   }) {
+    super();
     this.id = params.id;
     this.shippingGroupId = params.shippingGroupId;
     this.customerId = params.customerId;

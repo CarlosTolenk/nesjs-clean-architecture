@@ -4,8 +4,12 @@ DateTime.local().setZone('America/Santiago');
 
 export class SendingDate {
   value: string;
-  constructor() {
-    this.value = this.getDateInString();
+  constructor(value?: string) {
+    if (value) {
+      this.value = value;
+    } else {
+      this.value = this.getDateInString();
+    }
   }
 
   private getDateInString(): string {

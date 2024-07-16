@@ -9,12 +9,12 @@ import { InfrastructureError } from '../../../shared/domain/exception';
 import { ShippingGroupId } from '../../../shared/domain/valueObject/ShippingGroupId';
 import { Cellphone } from '../../../shared/domain/valueObject/Cellphone';
 import { CustomerId } from '../../../shared/domain/valueObject/CustomerId';
+import { DomainError } from '../../../shared/domain/exception/DomainError';
+import { SendingDate } from '../../../shared/domain/valueObject/SendingDate';
 
 // Infrastructure
 import { ChatEntity } from './entities/Chat.entity';
 import LogMethod from '../../../shared/infrastructure/decorators/LogMethod';
-import * as console from 'console';
-import { DomainError } from '../../../shared/domain/exception/DomainError';
 
 @Injectable()
 export class ChatRepositoryAzure extends ChatRepository {
@@ -60,7 +60,7 @@ export class ChatRepositoryAzure extends ChatRepository {
       choice: entity.choice as ChoiceAvailableType,
       customerPhone: new Cellphone(entity.customerPhone),
       customerId: new CustomerId(entity.customerId),
-      sendingDate: entity.date,
+      sendingDate: new SendingDate(entity.date),
       agreeExtraPaid: entity.agreeExtraPaid,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
@@ -74,7 +74,7 @@ export class ChatRepositoryAzure extends ChatRepository {
         shippingGroupId: chat.shippingGroupId.value,
         customerPhone: chat.customerPhone.value,
         customerId: chat.customerId.value,
-        sendingDate: chat.sendingDate,
+        sendingDate: chat.sendingDate.value,
         choice: chat.choice,
       });
 

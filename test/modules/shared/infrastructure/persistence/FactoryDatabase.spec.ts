@@ -52,13 +52,8 @@ describe('factoryConfigurationDatabase', () => {
       database: azureDbConnections.database,
       connectionTimeout: azureDbConnections.connectionTimeout,
       requestTimeout: azureDbConnections.requestTimeout,
-      authentication: {
-        type: azureDbConnections.authenticationType,
-        options: {
-          userName: azureDbConnections.username,
-          password: azureDbConnections.password,
-        },
-      },
+      username: azureDbConnections.username,
+      password: azureDbConnections.password,
       entities: [
         'dist/modules/**/infrastructure/persistence/entities/*.entity{.js,.ts}',
       ],
@@ -69,6 +64,7 @@ describe('factoryConfigurationDatabase', () => {
       synchronize: false,
       options: {
         encrypt: true,
+        trustServerCertificate: true,
       },
       cli: {
         migrationsDir:

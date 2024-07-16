@@ -17,6 +17,7 @@ import { GetChat } from '../../../../../src/modules/chat/application/useCases/Ge
 
 // Mocks
 import { ChatRepositoryMock } from '../../../../__mocks__/ChatRepositoryMock';
+import { SendingDate } from '../../../../../src/modules/shared/domain/valueObject/SendingDate';
 
 describe('GetChat', () => {
   let getChat: GetChat;
@@ -45,7 +46,7 @@ describe('GetChat', () => {
       id: chatId,
       shippingGroupId: new ShippingGroupId('shippingGroupId'),
       choice: ChoiceAvailableType.UNANSWERED,
-      sendingDate: 'date',
+      sendingDate: new SendingDate(),
       agreeExtraPaid: false,
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
@@ -65,7 +66,7 @@ describe('GetChat', () => {
       id: chatId,
       shippingGroupId: 'shippingGroupId',
       choice: 'UNANSWERED',
-      sendingDate: 'date',
+      sendingDate: expect.any(String),
       agreeExtraPaid: false,
       customerPhone: '56952158950',
       customerId: 'customerId',

@@ -13,8 +13,7 @@ export class BodySubstitutionMessage extends BodyMessage<PayloadSubstitutionMess
   constructor(payload: IPayloadBody<PayloadSubstitutionMessage>) {
     super();
     this.channel = 'PICKING';
-    this.event =
-      EventTypes.WSP_PICKING_SUBSTITUTION_PROSPECT_APPROVAL;
+    this.event = EventTypes.WSP_PICKING_SUBSTITUTION_PROSPECT_APPROVAL;
     this.shippingGroupId = new ShippingGroupId(payload.shippingGroupId);
     this.sendingDate = new SendingDate();
     this.customer = new CustomerWithName(

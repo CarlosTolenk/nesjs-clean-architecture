@@ -1,6 +1,6 @@
 import { ChatRepository } from '../../src/modules/chat/domain/ChatRepository';
 import { Chat } from '../../src/modules/chat/domain/Chat';
-import {Promise} from "mssql";
+import { Promise } from 'mssql';
 
 export class ChatRepositoryMock extends ChatRepository {
   getByShippingGroup(shippingGroupId: string): Promise<Chat | null> {

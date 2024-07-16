@@ -49,7 +49,7 @@ describe('ApplyEventHandler', () => {
     const eventPayload: EventPayload = {
       event: 'testType',
       shippingGroupId: '',
-      payload: ''
+      payload: '',
     };
 
     await expect(applyEventHandler.execute(eventPayload)).rejects.toThrow(
@@ -61,7 +61,7 @@ describe('ApplyEventHandler', () => {
     const eventPayload: EventPayload = {
       event: 'WSP_PICKING_SUBSTITUTION_PREFERENCES_V1',
       shippingGroupId: '',
-      payload: ''
+      payload: '',
     };
 
     const result = await applyEventHandler.execute(eventPayload);
@@ -73,7 +73,7 @@ describe('ApplyEventHandler', () => {
     const eventPayload: EventPayload = {
       event: 'WSP_PICKING_SUBSTITUTION_PROSPECT_APPROVAL',
       shippingGroupId: '',
-      payload: ''
+      payload: '',
     };
 
     const result = await applyEventHandler.execute(eventPayload);

@@ -7,11 +7,7 @@ import { PayloadInitialMessage } from '../../domain/templates/payloads/PayloadIn
 import { SendMessageRepository } from '../../domain/SendMessageRepository';
 import { ChatRepository } from '../../domain/ChatRepository';
 import { Chat, ChoiceAvailableType } from '../../domain/Chat';
-import {
-  ApplicationError,
-  InfrastructureError,
-  InvalidArgumentError,
-} from '../../../shared/domain/exception';
+import { ApplicationError } from '../../../shared/domain/exception';
 import { ShippingGroupId } from '../../../shared/domain/valueObject/ShippingGroupId';
 import { Cellphone } from '../../../shared/domain/valueObject/Cellphone';
 import { CustomerId } from '../../../shared/domain/valueObject/CustomerId';
@@ -23,6 +19,7 @@ import { ResponseSendMessageDto } from '../../infrastructure/http/dto/responseSe
 // Config
 import { ConfigEnvService } from '../../../config/ConfigEnvService';
 import { DomainError } from '../../../shared/domain/exception/DomainError';
+import { SendingDate } from '../../../shared/domain/valueObject/SendingDate';
 
 @Injectable()
 export class SendInitialMessage
@@ -81,7 +78,7 @@ export class SendInitialMessage
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone(customer.cellphone),
       customerId: new CustomerId(customerId),
-      sendingDate: sendingDate,
+      sendingDate: new SendingDate(sendingDate),
       agreeExtraPaid: false,
       choice: ChoiceAvailableType.UNANSWERED,
     });

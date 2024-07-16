@@ -3,6 +3,6 @@ import { PayloadMakeCall } from '../../src/modules/phoneCall/domain/valueObject/
 
 export class MakeCallRepositoryMock extends MakeCallRepository {
   execute(body: PayloadMakeCall): Promise<string> {
-    return Promise.resolve("");
+    return Promise.resolve('');
   }
 }

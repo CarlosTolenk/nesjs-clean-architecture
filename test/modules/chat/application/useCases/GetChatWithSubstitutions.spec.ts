@@ -13,6 +13,7 @@ import { Substitution } from '../../../../../src/modules/chat/domain/Substitutio
 import { ShippingGroupId } from '../../../../../src/modules/shared/domain/valueObject/ShippingGroupId';
 import { CustomerId } from '../../../../../src/modules/shared/domain/valueObject/CustomerId';
 import { Cellphone } from '../../../../../src/modules/shared/domain/valueObject/Cellphone';
+import { SendingDate } from '../../../../../src/modules/shared/domain/valueObject/SendingDate';
 
 // Application
 import { GetChatWithSubstitutions } from '../../../../../src/modules/chat/application/useCases/GetChatWithSubstitutions';
@@ -65,7 +66,7 @@ describe('GetChatWithSubstitutions', () => {
       id: chatId,
       shippingGroupId: new ShippingGroupId('shippingGroupId'),
       choice: ChoiceAvailableType.UNANSWERED,
-      sendingDate: 'date',
+      sendingDate: new SendingDate(),
       agreeExtraPaid: false,
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
@@ -109,7 +110,7 @@ describe('GetChatWithSubstitutions', () => {
         id: chatId,
         shippingGroupId: 'shippingGroupId',
         choice: 'UNANSWERED',
-        sendingDate: 'date',
+        sendingDate: expect.any(String),
         agreeExtraPaid: false,
         customerPhone: '56952158950',
         customerId: 'customerId',
@@ -136,7 +137,7 @@ describe('GetChatWithSubstitutions', () => {
       id: chatId,
       shippingGroupId: new ShippingGroupId('shippingGroupId'),
       choice: ChoiceAvailableType.UNANSWERED,
-      sendingDate: 'date',
+      sendingDate: new SendingDate(),
       agreeExtraPaid: false,
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
@@ -159,7 +160,7 @@ describe('GetChatWithSubstitutions', () => {
         id: chatId,
         shippingGroupId: 'shippingGroupId',
         choice: 'UNANSWERED',
-        sendingDate: 'date',
+        sendingDate: expect.any(String),
         agreeExtraPaid: false,
         customerPhone: '56952158950',
         customerId: 'customerId',

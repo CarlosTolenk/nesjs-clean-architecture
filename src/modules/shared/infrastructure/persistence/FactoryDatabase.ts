@@ -48,7 +48,7 @@ export function factoryConfigurationDatabase(
     synchronize: false,
     options: {
       encrypt: true,
-      trustServerCertificate: true
+      trustServerCertificate: true,
     },
     cli: {
       migrationsDir: 'src/modules/shared/infrastructure/persistence/migrations',

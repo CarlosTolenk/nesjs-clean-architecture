@@ -32,8 +32,7 @@ export class ConfigEnvServiceMock extends ConfigEnvService {
       },
       apis: {
         hermes: {
-          endpoint:
-            'https://twilio.com',
+          endpoint: 'https://twilio.com',
           timeout: 3000,
           retryNumber: 2,
           consumerId: '29c4859f-6e04-445e-8273-73da16902006',

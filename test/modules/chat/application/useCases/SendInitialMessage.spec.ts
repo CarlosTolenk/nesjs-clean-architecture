@@ -93,7 +93,9 @@ describe('SendInitialMessage', () => {
       customerPhone: {
         value: '56952158950',
       },
-      sendingDate: expect.any(String),
+      sendingDate: {
+        value: expect.any(String),
+      },
       id: undefined,
       shippingGroupId: {
         value: '1234',

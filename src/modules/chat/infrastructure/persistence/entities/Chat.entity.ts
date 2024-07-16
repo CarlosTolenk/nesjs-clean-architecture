@@ -68,7 +68,7 @@ export class ChatEntity {
     entity.shippingGroupId = chat.shippingGroupId.value;
     entity.customerPhone = chat.customerPhone.value;
     entity.customerId = chat.customerId.value;
-    entity.date = chat.sendingDate;
+    entity.date = chat.sendingDate.value;
     entity.agreeExtraPaid = chat.agreeExtraPaid;
     entity.id = chat.id;
     entity.choice = chat.choice;

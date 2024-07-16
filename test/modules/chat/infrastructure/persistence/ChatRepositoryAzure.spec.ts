@@ -13,6 +13,7 @@ import { ShippingGroupId } from '../../../../../src/modules/shared/domain/valueO
 import { Cellphone } from '../../../../../src/modules/shared/domain/valueObject/Cellphone';
 import { CustomerId } from '../../../../../src/modules/shared/domain/valueObject/CustomerId';
 import { DomainError } from '../../../../../src/modules/shared/domain/exception/DomainError';
+import { SendingDate } from '../../../../../src/modules/shared/domain/valueObject/SendingDate';
 
 // Infrastructure
 import { ChatRepositoryAzure } from '../../../../../src/modules/chat/infrastructure/persistence/ChatRepositoryAzure';
@@ -82,7 +83,7 @@ describe('ChatRepositoryAzure', () => {
         shippingGroupId: new ShippingGroupId(shippingGroupId),
         customerPhone: new Cellphone('56952158950'),
         customerId: new CustomerId('customerId'),
-        sendingDate: new Date().toISOString(),
+        sendingDate: new SendingDate(new Date().toISOString()),
         agreeExtraPaid: false,
         choice: ChoiceAvailableType.CHOICE_FOR_ME,
         createdAt: new Date(),

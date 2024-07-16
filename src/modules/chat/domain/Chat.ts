@@ -1,7 +1,8 @@
 import { ShippingGroupId } from '../../shared/domain/valueObject/ShippingGroupId';
 import { CustomerId } from '../../shared/domain/valueObject/CustomerId';
 import { Cellphone } from '../../shared/domain/valueObject/Cellphone';
-import { DomainError } from '../../shared/domain/exception/DomainError';
+import { AggregateRoot } from '../../shared/domain/AggregateRoot';
+import { SendingDate } from '../../shared/domain/valueObject/SendingDate';
 
 export enum ChoiceAvailableType {
   UNANSWERED = 'UNANSWERED',
@@ -19,18 +20,19 @@ interface ChatPrimitives {
   agreeExtraPaid: boolean;
 }
 
-export class Chat {
+export class Chat extends AggregateRoot<ChatPrimitives> {
   id: string;
   shippingGroupId: ShippingGroupId;
   choice: ChoiceAvailableType;
   customerPhone: Cellphone;
   customerId: CustomerId;
-  sendingDate: string;
+  sendingDate: SendingDate;
   agreeExtraPaid: boolean;
   createdAt: Date;
   updatedAt: Date;
 
   constructor(params: Partial<Chat>) {
+    super();
     this.id = params.id;
     this.shippingGroupId = params.shippingGroupId;
     this.choice = params.choice;
@@ -53,7 +55,7 @@ export class Chat {
       choice: this.choice,
       customerPhone: this.customerPhone.value,
       customerId: this.customerId.value,
-      sendingDate: this.sendingDate,
+      sendingDate: this.sendingDate.value,
       agreeExtraPaid: this.agreeExtraPaid,
     };
   }

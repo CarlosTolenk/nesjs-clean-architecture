@@ -22,7 +22,9 @@ describe('Customer', () => {
     });
 
     it('should throw an error if cellphone is not provided', () => {
-      expect(() => new Customer('', 'customerId')).toThrow(InvalidArgumentError);
+      expect(() => new Customer('', 'customerId')).toThrow(
+        InvalidArgumentError,
+      );
     });
 
     it('should throw an error if cellphone is invalid', () => {

@@ -11,6 +11,7 @@ import { Cellphone } from '../../../../../src/modules/shared/domain/valueObject/
 import { ShippingGroupId } from '../../../../../src/modules/shared/domain/valueObject/ShippingGroupId';
 import { CustomerId } from '../../../../../src/modules/shared/domain/valueObject/CustomerId';
 import { ApplicationError } from '../../../../../src/modules/shared/domain/exception';
+import { SendingDate } from '../../../../../src/modules/shared/domain/valueObject/SendingDate';
 
 // Application
 import { UpdatePreferenceChoice } from '../../../../../src/modules/chat/application/useCases/UpdatePreferenceChoice';
@@ -74,7 +75,7 @@ describe('UpdateChoiceByPreference', () => {
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
-      sendingDate: new Date().toISOString(),
+      sendingDate: new SendingDate(new Date().toISOString()),
       agreeExtraPaid: false,
       choice: ChoiceAvailableType.CHOICE_FOR_ME,
     });
@@ -100,7 +101,7 @@ describe('UpdateChoiceByPreference', () => {
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
-      sendingDate: new Date().toISOString(),
+      sendingDate: new SendingDate(new Date().toISOString()),
       agreeExtraPaid: false,
       choice: ChoiceAvailableType.CHOICE_FOR_ME,
     });
@@ -126,7 +127,7 @@ describe('UpdateChoiceByPreference', () => {
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
-      sendingDate: new Date().toISOString(),
+      sendingDate: new SendingDate(new Date().toISOString()),
       agreeExtraPaid: false,
       choice: ChoiceAvailableType.UNANSWERED,
     });
@@ -161,7 +162,7 @@ describe('UpdateChoiceByPreference', () => {
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone('56952158950'),
       customerId: new CustomerId('customerId'),
-      sendingDate: new Date().toISOString(),
+      sendingDate: new SendingDate(new Date().toISOString()),
       agreeExtraPaid: false,
       choice: ChoiceAvailableType.UNANSWERED,
     });
