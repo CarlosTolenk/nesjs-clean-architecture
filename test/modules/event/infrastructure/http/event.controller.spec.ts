@@ -4,14 +4,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ILogger } from '../../../../../src/modules/shared/domain/Logger';
 
 // Application
-import { ApplyEventHandler } from '../../../../../src/modules/event/application/useCases/ApplyEventHandler';
+import { ApplyEventHandler } from '../../../../../src/modules/webhook/application/useCases/ApplyEventHandler';
 
 // Infrastructure
 import {
   EventPayload,
   EventRequestDto,
-} from '../../../../../src/modules/event/infrastructure/http/dto/eventRequestDto';
-import { EventController } from '../../../../../src/modules/event/infrastructure/http/event.controller';
+} from '../../../../../src/modules/webhook/infrastructure/http/dto/eventRequestDto';
+import { EventController } from '../../../../../src/modules/webhook/infrastructure/http/event.controller';
 
 describe('EventController', () => {
   let controller: EventController;

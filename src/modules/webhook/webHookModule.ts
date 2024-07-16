@@ -19,4 +19,4 @@ import {
   controllers: [...ControllerInfrastructure],
   providers: [...ProvidersInfrastructure, ...ProvidersApplication],
 })
-export class EventModule {}
+export class WebHookModule {}

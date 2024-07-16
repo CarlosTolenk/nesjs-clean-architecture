@@ -2,10 +2,10 @@ import { Test } from '@nestjs/testing';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
 // Domain
-import { EventBody } from '../../../../../src/modules/event/domain/EventBody';
+import { EventBody } from '../../../../../src/modules/webhook/domain/EventBody';
 
 // Application
-import { ChoiceEventHandler } from '../../../../../src/modules/event/application/handlers/ChoiceEventHandler';
+import { ChoiceEventHandler } from '../../../../../src/modules/webhook/application/handlers/ChoiceEventHandler';
 
 // Infrastructure
 import { UpdateChatByChoiceDto } from '../../../../../src/modules/chat/infrastructure/http/dto/updateChatByChoice.dto';

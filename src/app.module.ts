@@ -18,7 +18,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { ConfigModule } from './modules/config/config.module';
 import { PhoneCallModule } from './modules/phoneCall/phoneCall.module';
 import { ChatModule } from './modules/chat/chat.module';
-import { EventModule } from './modules/event/event.module';
+import { WebHookModule } from './modules/webhook/webHookModule';
 
 // Infrastructure
 import { TrackingMiddleware } from './modules/shared/infrastructure/middleware/Tracking';
@@ -37,7 +37,7 @@ import { ConfigEnvService } from './modules/config/ConfigEnvService';
     SharedModule,
     PhoneCallModule,
     ChatModule,
-    EventModule,
+    WebHookModule,
     EventEmitterModule.forRoot(),
   ],
   providers: [

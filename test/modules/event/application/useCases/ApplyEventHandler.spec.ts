@@ -7,13 +7,13 @@ import { SharedModule } from '../../../../../src/modules/shared/shared.module';
 import { ApplicationError } from '../../../../../src/modules/shared/domain/exception';
 
 // Application
-import { ApplyEventHandler } from '../../../../../src/modules/event/application/useCases/ApplyEventHandler';
-import { FactoryEventHandler } from '../../../../../src/modules/event/application/services/FactoryEventHandler';
-import { ChoiceEventHandler } from '../../../../../src/modules/event/application/handlers/ChoiceEventHandler';
+import { ApplyEventHandler } from '../../../../../src/modules/webhook/application/useCases/ApplyEventHandler';
+import { FactoryEventHandler } from '../../../../../src/modules/webhook/application/services/FactoryEventHandler';
+import { ChoiceEventHandler } from '../../../../../src/modules/webhook/application/handlers/ChoiceEventHandler';
 
 // Infrastructure
-import { EventResultDto } from '../../../../../src/modules/event/infrastructure/http/dto/eventResult.dto';
-import { EventPayload } from '../../../../../src/modules/event/infrastructure/http/dto/eventRequestDto';
+import { EventResultDto } from '../../../../../src/modules/webhook/infrastructure/http/dto/eventResult.dto';
+import { EventPayload } from '../../../../../src/modules/webhook/infrastructure/http/dto/eventRequestDto';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
 describe('ApplyEventHandler', () => {

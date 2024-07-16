@@ -16,7 +16,7 @@ import { ChoiceAvailableType } from '../../../src/modules/chat/domain/Chat';
 // Infrastructure
 import { ChatEntity } from '../../../src/modules/chat/infrastructure/persistence/entities/Chat.entity';
 import { HttpExceptionFilter } from '../../../src/modules/shared/infrastructure/http/filter/HttpExceptionFilter';
-import { EventRequestDto } from '../../../src/modules/event/infrastructure/http/dto/eventRequestDto';
+import { EventRequestDto } from '../../../src/modules/webhook/infrastructure/http/dto/eventRequestDto';
 
 // Mocks
 import { FakeChatBuilder } from '../../__mocks__/builders/FakeChatBuilder';

@@ -7,9 +7,9 @@ import { ApplicationError } from '../../../../../src/modules/shared/domain/excep
 import { ILogger } from '../../../../../src/modules/shared/domain/Logger';
 
 // Application
-import { FactoryEventHandler } from '../../../../../src/modules/event/application/services/FactoryEventHandler';
-import { ChoiceEventHandler } from '../../../../../src/modules/event/application/handlers/ChoiceEventHandler';
-import { SubstitutionEventHandler } from '../../../../../src/modules/event/application/handlers/SubstitutionEventHandler';
+import { FactoryEventHandler } from '../../../../../src/modules/webhook/application/services/FactoryEventHandler';
+import { ChoiceEventHandler } from '../../../../../src/modules/webhook/application/handlers/ChoiceEventHandler';
+import { SubstitutionEventHandler } from '../../../../../src/modules/webhook/application/handlers/SubstitutionEventHandler';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
 describe('FactoryEventHandler', () => {
