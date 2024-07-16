@@ -87,6 +87,7 @@ describe('PhoneCallRepositoryAzure', () => {
           customerId: {
             value: 'customerId',
           },
+          domainEvents: [],
         },
         {
           answer: 'N/A',
@@ -106,6 +107,7 @@ describe('PhoneCallRepositoryAzure', () => {
           customerId: {
             value: 'customerId',
           },
+          domainEvents: [],
         },
       ]);
     });

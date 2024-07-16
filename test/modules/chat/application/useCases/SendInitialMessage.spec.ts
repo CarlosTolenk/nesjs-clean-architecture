@@ -102,6 +102,7 @@ describe('SendInitialMessage', () => {
       },
       updatedAt: undefined,
       customerId: { value: 'customerId' },
+      domainEvents: [],
     });
     expect(sendMessageRepository.send).toHaveBeenCalledWith(
       expect.objectContaining({
