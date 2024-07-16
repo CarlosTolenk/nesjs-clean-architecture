@@ -1,0 +1,53 @@
+{
+  "isDevelopment": true,
+  "profile": "dev",
+  "namespace": "amida",
+  "hostname": "localhost",
+  "port": 3007,
+  "log": {
+    "level": "silly"
+  },
+  "db": {
+    "host": "localhost",
+    "port": 1433,
+    "username": "sa",
+    "database": "contactability",
+    "name": "contactability",
+    "authenticationType": "default",
+    "retryAttempts": 10,
+    "retryDelay": 10,
+    "connectionTimeout": 10000,
+    "requestTimeout": 12000,
+    "pool": {
+      "max": 5,
+      "min": 1,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "apis": {
+    "hermes": {
+      "endpoint": "https://twilio.com",
+      "timeout": 3000,
+      "retryNumber": 2
+    }
+  },
+  "sendMessage": {
+    "initialMessage": {
+      "callOptionButton": "callOptionButton",
+      "chooseForMeOptionButton": "chooseForMeOptionButton",
+      "refundOptionButton": "refundOptionButton"
+    }
+  },
+  "socket": {
+    "enable": true,
+    "endpoint": "http://localhost.com",
+    "pathEndpoint": "api/config",
+    "indexKeys": ["contactability"],
+    "channels": {
+      "connection": "CONNECTION",
+      "connectionError": "connect_error",
+      "broadcast": "ALL_CONFIG_MAP_CLIENT"
+    }
+  }
+}

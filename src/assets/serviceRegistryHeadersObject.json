@@ -1,0 +1,36 @@
+{
+  "serviceRegistryHeaders": [
+    {
+      "name": "WM_CONSUMER.ID",
+      "description": "Consumer ID, the same used to sign in WM_SEC.AUTH_SIGNATURE and registred in Service Registry",
+      "required": true
+    },
+    {
+      "name": "WM_SVC.NAME",
+      "description": "Service name",
+      "required": true
+    },
+    {
+      "name": "WM_SVC.ENV",
+      "description": "Environment that is being requested",
+      "required": true
+    },
+    {
+      "name": "WM_SEC.AUTH_SIGNATURE",
+      "description":
+      "Token signed with the private key and generated with WM_CONSUMER.ID, WM_CONSUMER.INTIMESTAMP and WM_SEC.KEY_VERSION values",
+      "required": true
+    },
+    {
+      "name": "WM_CONSUMER.INTIMESTAMP",
+      "description":
+      "Current Timestamp, the same used to sign in WM_SEC.AUTH_SIGNATURE",
+      "required": true
+    },
+    {
+      "name": "WM_SEC.KEY_VERSION",
+      "description": "Key version, the same used to sign in WM_SEC.AUTH_SIGNATURE",
+      "required": true
+    }
+  ]
+}
