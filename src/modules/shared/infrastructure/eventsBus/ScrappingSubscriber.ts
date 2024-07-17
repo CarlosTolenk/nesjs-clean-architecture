@@ -2,9 +2,9 @@ import { OnApplicationBootstrap } from '@nestjs/common';
 import { ModulesContainer, Reflector } from '@nestjs/core';
 
 // Domain
+import { DomainInjectable } from '../../domain/decorators/DomainInjectable';
 import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
 import { DomainEvent } from '../../domain/DomainEvent';
-import { DomainInjectable } from '../../domain/decorators/DomainInjectable';
 import { DomainEventSubscriberMetadataKey } from '../../domain/decorators/DomainEventSubscriberDecorator';
 
 @DomainInjectable()
@@ -38,7 +38,7 @@ export class ScrappingSubscriber implements OnApplicationBootstrap {
 
         if (metadata) {
           this.subscribers.push(
-            instance.constructor as unknown as DomainEventSubscriber<DomainEvent>,
+            instance as unknown as DomainEventSubscriber<DomainEvent>,
           );
         }
       }

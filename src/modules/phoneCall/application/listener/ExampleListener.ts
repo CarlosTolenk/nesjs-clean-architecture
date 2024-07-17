@@ -1,18 +1,25 @@
 // Domain
 import { DomainEventSubscriber } from '../../../shared/domain/DomainEventSubscriber';
+import { DomainEventClass } from '../../../shared/domain/DomainEvent';
+import { DomainInjectable } from '../../../shared/domain/decorators/DomainInjectable';
+import { ChatCreatedDomainEvent } from '../../../chat/domain/ChatCreatedDomainEvent';
 
 // Infrastructure
 import { DomainEventSubscriberDecorator } from '../../../shared/domain/decorators/DomainEventSubscriberDecorator';
 
 @DomainEventSubscriberDecorator()
-export class ExampleListener implements DomainEventSubscriber<any> {
+@DomainInjectable()
+export class ExampleListener
+  implements DomainEventSubscriber<ChatCreatedDomainEvent>
+{
   constructor() {}
 
-  on(domainEvent: any): Promise<void> {
-    return Promise.resolve(undefined);
+  subscribedTo(): Array<DomainEventClass> {
+    return [ChatCreatedDomainEvent];
   }
 
-  subscribedTo(): Array<any> {
-    return undefined;
+  on(domainEvent: ChatCreatedDomainEvent): Promise<void> {
+    console.log('Escuchando el evento', domainEvent);
+    return Promise.resolve(undefined);
   }
 }
