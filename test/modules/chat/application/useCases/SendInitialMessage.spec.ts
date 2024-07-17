@@ -1,9 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { HttpStatus } from '@nestjs/common';
 
-// Modules
-import { SharedModule } from '../../../../../src/modules/shared/shared.module';
-
 // Domain
 import { SendMessageRepository } from '../../../../../src/modules/chat/domain/SendMessageRepository';
 import {
@@ -14,6 +11,10 @@ import {
 import { ChatRepository } from '../../../../../src/modules/chat/domain/ChatRepository';
 import { Chat } from '../../../../../src/modules/chat/domain/Chat';
 import { ShippingGroupId } from '../../../../../src/modules/shared/domain/valueObject/ShippingGroupId';
+import {
+  EVENT_BUS,
+  EventBus,
+} from '../../../../../src/modules/shared/domain/EventBus';
 
 // Application
 import { SendInitialMessage } from '../../../../../src/modules/chat/application/useCases/SendInitialMessage';
@@ -33,10 +34,11 @@ describe('SendInitialMessage', () => {
   let sendInitialMessage: SendInitialMessage;
   let sendMessageRepository: SendMessageRepository;
   let chatRepository: ChatRepository;
+  let eventBus: EventBus;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [SharedModule],
+      imports: [],
       providers: [
         SendInitialMessage,
         {
@@ -50,6 +52,12 @@ describe('SendInitialMessage', () => {
           useClass: ChatRepositoryMock,
         },
         {
+          provide: EVENT_BUS,
+          useFactory: () => ({
+            publish: jest.fn(),
+          }),
+        },
+        {
           provide: ConfigEnvService,
           useFactory: () => ({
             getConfig: jest.fn(() => config),
@@ -61,6 +69,7 @@ describe('SendInitialMessage', () => {
 
     sendInitialMessage = moduleRef.get<SendInitialMessage>(SendInitialMessage);
     chatRepository = moduleRef.get<ChatRepository>(ChatRepository);
+    eventBus = moduleRef.get<EventBus>(EVENT_BUS);
     sendMessageRepository = moduleRef.get<SendMessageRepository>(
       SendMessageRepository,
     );
@@ -80,12 +89,25 @@ describe('SendInitialMessage', () => {
     const result: ResponseSendMessageDto = ResponseSendMessageDto.OK();
     jest.spyOn(sendMessageRepository, 'send').mockResolvedValue(undefined);
     jest.spyOn(chatRepository, 'getByShippingGroup').mockResolvedValue(null);
+    const spyEventBus = jest.spyOn(eventBus, 'publish').mockResolvedValue(null);
     const spyChatRepository = jest
       .spyOn(chatRepository, 'save')
       .mockResolvedValue(null);
+
     const response = await sendInitialMessage.execute(dto);
 
     expect(response).toEqual(result);
+    expect(spyEventBus).toHaveBeenCalledWith([
+      {
+        aggregateId: expect.any(String),
+        customerId: 'customerId',
+        eventId: expect.any(String),
+        eventName: 'chat.created',
+        occurredOn: expect.any(Date),
+        sendingDate: expect.any(String),
+        shippingGroupId: '1234',
+      },
+    ]);
     expect(spyChatRepository).toHaveBeenCalledWith({
       agreeExtraPaid: expect.any(Boolean),
       choice: 'UNANSWERED',
@@ -100,17 +122,7 @@ describe('SendInitialMessage', () => {
         value: '1234',
       },
       customerId: { value: 'customerId' },
-      domainEvents: expect.arrayContaining([
-        {
-          aggregateId: expect.any(String),
-          customerId: 'customerId',
-          eventId: expect.any(String),
-          eventName: 'chat.created',
-          occurredOn: expect.any(Date),
-          sendingDate: expect.any(String),
-          shippingGroupId: '1234',
-        },
-      ]),
+      domainEvents: expect.arrayContaining([]),
       updatedAt: undefined,
       createdAt: undefined,
     });

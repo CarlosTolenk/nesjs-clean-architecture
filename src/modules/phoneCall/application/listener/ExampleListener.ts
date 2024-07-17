@@ -3,8 +3,6 @@ import { DomainEventSubscriber } from '../../../shared/domain/DomainEventSubscri
 import { DomainEventClass } from '../../../shared/domain/DomainEvent';
 import { DomainInjectable } from '../../../shared/domain/decorators/DomainInjectable';
 import { ChatCreatedDomainEvent } from '../../../chat/domain/ChatCreatedDomainEvent';
-
-// Infrastructure
 import { DomainEventSubscriberDecorator } from '../../../shared/domain/decorators/DomainEventSubscriberDecorator';
 
 @DomainEventSubscriberDecorator()

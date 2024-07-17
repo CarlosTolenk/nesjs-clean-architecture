@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 
 // Domain
 import { BodyInitialMessage } from '../../domain/templates/BodyInitialMessage';
@@ -13,6 +13,7 @@ import { Cellphone } from '../../../shared/domain/valueObject/Cellphone';
 import { CustomerId } from '../../../shared/domain/valueObject/CustomerId';
 import { DomainError } from '../../../shared/domain/exception/DomainError';
 import { SendingDate } from '../../../shared/domain/valueObject/SendingDate';
+import { EVENT_BUS, EventBus } from '../../../shared/domain/EventBus';
 
 // Infrastructure
 import { SendInitialMessageDto } from '../../infrastructure/http/dto/sendInitialMessage.dto';
@@ -29,6 +30,7 @@ export class SendInitialMessage
     private readonly sendMessageRepository: SendMessageRepository,
     private readonly configEnvService: ConfigEnvService,
     private readonly chatRepository: ChatRepository,
+    @Inject(EVENT_BUS) private readonly eventBus: EventBus,
   ) {}
 
   async execute(
@@ -42,6 +44,8 @@ export class SendInitialMessage
         params.customerId,
       );
       await this.chatRepository.save(chat);
+      await this.eventBus.publish(chat.pullDomainEvents());
+
       return ResponseSendMessageDto.OK();
     } catch (error) {
       if (error instanceof DomainError) {
