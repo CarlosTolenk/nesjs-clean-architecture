@@ -1,4 +1,4 @@
-import { Module, OnApplicationBootstrap, OnModuleInit } from '@nestjs/common';
+import { Module, OnApplicationBootstrap } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { DiscoveryModule, Reflector } from '@nestjs/core';
 
@@ -7,16 +7,15 @@ import { ConfigModule } from '../config/config.module';
 
 // Infrastructure
 import { ProvidersInfrastructure } from './infrastructure';
-import { SubscriberService } from './infrastructure/events/SubscriberService';
-import * as console from 'node:console';
+import { ScrappingSubscriber } from './infrastructure/eventsBus/ScrappingSubscriber';
 
 @Module({
   imports: [ConfigModule, HttpModule, DiscoveryModule],
-  providers: [...ProvidersInfrastructure, SubscriberService, Reflector],
+  providers: [...ProvidersInfrastructure, ScrappingSubscriber, Reflector],
   exports: [...ProvidersInfrastructure],
 })
 export class SharedModule implements OnApplicationBootstrap {
-  constructor(private readonly subscriberService: SubscriberService) {}
+  constructor(private readonly subscriberService: ScrappingSubscriber) {}
 
   onApplicationBootstrap(): any {
     const subscribers = this.subscriberService.getSubscribers();

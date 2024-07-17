@@ -11,6 +11,8 @@ import { ApplicationError } from '../../../shared/domain/exception';
 import { ShippingGroupId } from '../../../shared/domain/valueObject/ShippingGroupId';
 import { Cellphone } from '../../../shared/domain/valueObject/Cellphone';
 import { CustomerId } from '../../../shared/domain/valueObject/CustomerId';
+import { DomainError } from '../../../shared/domain/exception/DomainError';
+import { SendingDate } from '../../../shared/domain/valueObject/SendingDate';
 
 // Infrastructure
 import { SendInitialMessageDto } from '../../infrastructure/http/dto/sendInitialMessage.dto';
@@ -18,8 +20,6 @@ import { ResponseSendMessageDto } from '../../infrastructure/http/dto/responseSe
 
 // Config
 import { ConfigEnvService } from '../../../config/ConfigEnvService';
-import { DomainError } from '../../../shared/domain/exception/DomainError';
-import { SendingDate } from '../../../shared/domain/valueObject/SendingDate';
 
 @Injectable()
 export class SendInitialMessage
@@ -74,7 +74,7 @@ export class SendInitialMessage
   ): Chat {
     const { shippingGroupId, sendingDate, customer } =
       bodyMessage.messagePlain();
-    return new Chat({
+    return Chat.create({
       shippingGroupId: new ShippingGroupId(shippingGroupId),
       customerPhone: new Cellphone(customer.cellphone),
       customerId: new CustomerId(customerId),

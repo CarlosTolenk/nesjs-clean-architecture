@@ -1,24 +1,27 @@
-import {
-  Injectable,
-  OnApplicationBootstrap,
-  OnModuleInit,
-} from '@nestjs/common';
+import { OnApplicationBootstrap } from '@nestjs/common';
 import { ModulesContainer, Reflector } from '@nestjs/core';
-import { DomainEventSubscriberMetadataKey } from '../decorators/DomainEventSubscriberDecorator';
+
+// Domain
 import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
 import { DomainEvent } from '../../domain/DomainEvent';
+import { DomainInjectable } from '../../domain/decorators/DomainInjectable';
+import { DomainEventSubscriberMetadataKey } from '../../domain/decorators/DomainEventSubscriberDecorator';
 
-@Injectable()
-export class SubscriberService implements OnApplicationBootstrap {
-  private subscribers: Function[] = [];
+@DomainInjectable()
+export class ScrappingSubscriber implements OnApplicationBootstrap {
+  private subscribers: Array<DomainEventSubscriber<DomainEvent>>;
 
   constructor(
     private readonly reflector: Reflector,
     private readonly modulesContainer: ModulesContainer,
   ) {}
 
+  onApplicationBootstrap(): any {
+    this.findClassesImplementingDomainEventSubscriber();
+  }
+
   private findClassesImplementingDomainEventSubscriber() {
-    this.subscribers = [];
+    this.subscribers = Array<DomainEventSubscriber<DomainEvent>>();
 
     for (const module of this.modulesContainer.values()) {
       for (const provider of module.providers.values()) {
@@ -34,21 +37,15 @@ export class SubscriberService implements OnApplicationBootstrap {
         );
 
         if (metadata) {
-          this.subscribers.push(instance.constructor);
+          this.subscribers.push(
+            instance.constructor as unknown as DomainEventSubscriber<DomainEvent>,
+          );
         }
-
-        console.log('Checking provider:', provider.name);
-        console.log('Instance:', instance.constructor.name);
-        console.log('Metadata:', metadata);
       }
     }
   }
 
-  getSubscribers(): Function[] {
+  getSubscribers(): Array<DomainEventSubscriber<DomainEvent>> {
     return this.subscribers;
-  }
-
-  onApplicationBootstrap(): any {
-    this.findClassesImplementingDomainEventSubscriber();
   }
 }

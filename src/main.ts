@@ -13,7 +13,6 @@ import { HttpExceptionFilter } from './modules/shared/infrastructure/http/filter
 
 // Modules
 import { AppModule } from './app.module';
-import { FeaturesFlagModule } from './modules/featuresFlag/featuresFlag.module';
 
 import { traceability } from './modules/metrics/traceability';
 
@@ -22,21 +21,6 @@ const logger: ILogger = new LoggerWinston();
 
 async function bootstrap() {
   try {
-    if (!AppModule.isDevelopment) {
-      const socket = await NestFactory.create(FeaturesFlagModule, {
-        logger: ['verbose'],
-      }).then((socket) => {
-        logger.info(`Feature flags is running`);
-        return socket;
-      });
-
-      await socket.init().catch((error) => {
-        logger.error(`Error starting socket server ${error?.message}`, {
-          error,
-        });
-      });
-    }
-
     const app = await NestFactory.create(AppModule);
 
     app.useGlobalPipes(new ValidationPipe({ transform: true }));

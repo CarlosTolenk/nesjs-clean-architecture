@@ -1,13 +1,12 @@
-import { DomainEventSubscriberDecorator } from '../../../shared/infrastructure/decorators/DomainEventSubscriberDecorator';
-import { Injectable } from '@nestjs/common';
+// Domain
 import { DomainEventSubscriber } from '../../../shared/domain/DomainEventSubscriber';
 
+// Infrastructure
+import { DomainEventSubscriberDecorator } from '../../../shared/domain/decorators/DomainEventSubscriberDecorator';
+
 @DomainEventSubscriberDecorator()
-@Injectable()
 export class ExampleListener implements DomainEventSubscriber<any> {
-  constructor() {
-    console.log('ExampleListener constructor');
-  }
+  constructor() {}
 
   on(domainEvent: any): Promise<void> {
     return Promise.resolve(undefined);

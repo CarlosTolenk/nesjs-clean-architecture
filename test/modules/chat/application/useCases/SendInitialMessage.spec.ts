@@ -89,20 +89,30 @@ describe('SendInitialMessage', () => {
     expect(spyChatRepository).toHaveBeenCalledWith({
       agreeExtraPaid: expect.any(Boolean),
       choice: 'UNANSWERED',
-      createdAt: undefined,
       customerPhone: {
         value: '56952158950',
       },
       sendingDate: {
         value: expect.any(String),
       },
-      id: undefined,
+      id: expect.any(String),
       shippingGroupId: {
         value: '1234',
       },
-      updatedAt: undefined,
       customerId: { value: 'customerId' },
-      domainEvents: [],
+      domainEvents: expect.arrayContaining([
+        {
+          aggregateId: expect.any(String),
+          customerId: 'customerId',
+          eventId: expect.any(String),
+          eventName: 'chat.created',
+          occurredOn: expect.any(Date),
+          sendingDate: expect.any(String),
+          shippingGroupId: '1234',
+        },
+      ]),
+      updatedAt: undefined,
+      createdAt: undefined,
     });
     expect(sendMessageRepository.send).toHaveBeenCalledWith(
       expect.objectContaining({

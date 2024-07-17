@@ -13,6 +13,7 @@
     "username": "sa",
     "database": "contactability",
     "name": "contactability",
+    "password": "Password_123#",
     "authenticationType": "default",
     "retryAttempts": 10,
     "retryDelay": 10,
@@ -37,17 +38,6 @@
       "callOptionButton": "callOptionButton",
       "chooseForMeOptionButton": "chooseForMeOptionButton",
       "refundOptionButton": "refundOptionButton"
-    }
-  },
-  "socket": {
-    "enable": true,
-    "endpoint": "http://localhost.com",
-    "pathEndpoint": "api/config",
-    "indexKeys": ["contactability"],
-    "channels": {
-      "connection": "CONNECTION",
-      "connectionError": "connect_error",
-      "broadcast": "ALL_CONFIG_MAP_CLIENT"
     }
   }
 }
