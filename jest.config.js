@@ -3,7 +3,7 @@ module.exports = {
   testRegex: '\\.spec\\.ts$',
   roots: ['<rootDir>/src', '<rootDir>/test'],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
+    "^.+\\.(t|j)s?$": ["@swc/jest"]
   },
   collectCoverage: true,
   collectCoverageFrom: ['**/*.{ts,js}', '!**/*.d.ts'],
